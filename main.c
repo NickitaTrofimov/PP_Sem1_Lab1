@@ -1,65 +1,60 @@
 #include <stdio.h>
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdlib.h>
-int main (){
-double temperature, temperature1, temperature2;
-int scale;
-printf("$ tconvert ");
-scanf("%lf\n", &temperature);
-scale = getchar();
-if (scale == 'C') {
-temperature1 = temperature * 1.8 + 32;//переводим Цельсии в Фаренгейт
-temperature2 = temperature + 273.15;//переводим Цельсии в Кельвины
-printf("%.2lf", temperature1, " F\n");
-printf(" F\n");
-printf("%.2lf", temperature2, " K\n");
-printf(" K\n");
+#include <ctype.h>
+#include <string.h>
+float C_F (float x){
+return x*5.0/9.0+32;
 }
-else if (scale == 'F') {
-temperature1 = (temperature - 32) / 1.8;//переводим Фаренгейты в Цельсии
-temperature2 = (temperature - 32) / 1.8 + 273.15;//переводим Фаренгейты в Кельвины
-printf("%.2lf", temperature1, " C\n");
-printf(" C\n");
-printf("%.2lf", temperature2, " K\n");
-printf(" K\n");
+float F_C (float x){
+return (x-32)*5.0/9.0;
 }
-else if (scale == 'K') {
-temperature1 = temperature - 273.15;//переводим Кельвины в Цельсии
-temperature2 = 9*(temperature -273.15)/5 + 32;//переводим Кельвины в Фаренгейты
-printf("%.2lf", temperature1, " C\n");
-printf(" C\n");
-printf("%.2lf", temperature2, " F\n");
-printf(" F\n");
+float C_K (float x){
+return x+273.15;
 }
-else {
-printf("%.2lf", temperature);
-printf(" C:\n");
-temperature1 = temperature * 1.8 + 32;//переводим Цельсии в Фаренгейт
-temperature2 = temperature + 273.15;//переводим Цельсии в Кельвины
-printf("%.2lf", temperature1, " F\n");
-printf(" F\n");
-printf("%.2lf", temperature2, " K\n");
-printf(" K\n");
-printf("\n");
+float K_C (float x){
+return x-273.15;
+}
 
-printf("%.2lf", temperature);
-printf(" F:\n");
-temperature1 = (temperature - 32) / 1.8;//переводим Фаренгейты в Цельсии
-temperature2 = (temperature - 32) / 1.8 + 273.15;//переводим Фаренгейты в Кельвины
-printf("%.2lf", temperature1, " C\n");
-printf(" C\n");
-printf("%.2lf", temperature2, " K\n");
-printf(" K\n");
-printf("\n");
-
-printf("%.2lf", temperature);
-printf(" K:\n");
-temperature1 = temperature - 273.15;//переводим Кельвины в Цельсии
-temperature2 = 9*(temperature -273.15)/5 + 32;//переводим Кельвины в Фаренгейты
-printf("%.2lf", temperature1, " C\n");
-printf(" C\n");
-printf("%.2lf", temperature2, " F\n");
-printf(" F\n");
+int main(int argc, char *argv[]){
+float temp = atof(argv[1]);
+if(argc==3){
+switch (*argv[2]){
+case 'C':
+if (temp < -273.15)
+printf("Temperature < absolute zero for Celsius!\n");
+else
+printf("%.2f F\n%.2f K", C_F(temp), C_K(temp));
+break;
+case 'F':
+if (temp < -459.67)
+printf("Temperature < absolute zero for Fahrenheit!\n");
+else
+printf("%.2f C\n%.2f K", F_C(temp), C_K(F_C(temp)));
+break;
+case 'K':
+if (temp < 0)
+printf("Temperature < absolute zero for Kelvin!\n");
+else
+printf("%.2f C\n%.2f F", K_C(temp), C_F(K_C(temp)));
+break;
+}
+  
+else{
+printf (temp, "%.2f C:\n");
+if (temp < -273.15)
+printf("Temperature < absolute zero for Celsius!\n");
+else
+printf("%.2f F\n%.2f K", C_F(temp), C_K(temp));
+printf (temp, "%.2f F:\n");
+if (temp < -459.67)
+printf("Temperature < absolute zero for Fahrenheit!\n");
+else
+printf("%.2f C\n%.2f K", F_C(temp), C_K(F_C(temp)));
+printf (temp, "%.2f K:\n");
+if (temp < 0)
+printf("Temperature < absolute zero for Kelvin!\n");
+else
+printf("%.2f C\n%.2f F", K_C(temp), C_F(K_C(temp)));
 }
 return 0;
 }
