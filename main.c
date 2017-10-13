@@ -30,39 +30,46 @@ if(argc==3)
             if (temp < -273.15)
                 printf("Temperature < absolute zero for Celsius!\n");
             else
-                printf("%.2f F\n%.2f K", C_F(temp), C_K(temp));
+                printf("C_F(temp)=%.2f F\n", C_F(temp));
+                printf("C_K(temp)=%.2f K\n", C_K(temp));
                 break;
         case 'F':
             if (temp < -459.67)
                 printf("Temperature < absolute zero for Fahrenheit!\n");
             else
-                printf("%.2f C\n%.2f K", F_C(temp), C_K(F_C(temp)));
+                printf("F_C(temp)=%.2f C\n", F_C(temp));
+                printf("C_K(F_C(temp)=%.2f K\n", C_K(F_C(temp)));
                 break;
         case 'K':
             if (temp < 0)
                 printf("Temperature < absolute zero for Kelvin!\n");
             else
-                printf("%.2f C\n%.2f F", K_C(temp), C_F(K_C(temp)));
+                printf("K_C(temp)=%.2f C\n", K_C(temp));
+                printf("C_F(K_C(temp)=%.2f F", C_F(K_C(temp)));
                 break;
     }
 }
 else
+
 {
-    printf ("%.2f", temp, "C:\n");
+    printf("temp=%.2f", temp, "C:\n");
     if (temp < -273.15)
         printf("Temperature < absolute zero for Celsius!\n");
     else
-        printf("%.2f F\n%.2f K", C_F(temp), C_K(temp), "\n");
-    printf ("%.2f", temp, "F:\n");
+        printf("C_F=%.2f F\n", C_F);
+        printf("C_K=%.2f K\n", C_K);
+    printf("temp=%.2f", temp, "F:\n");
     if (temp < -459.67)
         printf("Temperature < absolute zero for Fahrenheit!\n");
     else
-        printf("%.2f C\n%.2f K", F_C(temp), C_K(F_C(temp)), "\n");
+        printf("F_C=%.2f C\n", F_C);
+        printf("C_K(F_C)=%.2f K\n", C_K(F_C));
     printf ("%.2f", temp, "K:\n");
     if (temp < 0)
         printf("Temperature < absolute zero for Kelvin!\n");
     else
-        printf("%.2f C\n%.2f F", K_C(temp), C_F(K_C(temp)), "\n");
+        printf("K_C=%.2f C\n", K_C);
+        printf("C_F(K_C)=%.2f F", C_F(K_C)));
 }
 return 0;
 }
