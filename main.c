@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
 float C_F (float x)
 {
 return x*9.0/5.0+32;
